@@ -46,12 +46,10 @@ class _ReplyAppStete extends State<ReplyApp> with RestorationMixin {
 
   @override
   Widget build(BuildContext context) {
-    //final galleryThemeMode = GalleryOptions.of(context).themeMode;
-    // var isDark = galleryThemeMode == ThemeMode.system
-    //     ? Theme.of(context).brightness == Brightness.dark
-    //     : galleryThemeMode == ThemeMode.dark;
-
-    const isDark = false;
+    final galleryThemeMode = GalleryOptions.of(context).themeMode;
+    var isDark = galleryThemeMode == ThemeMode.system
+        ? Theme.of(context).brightness == Brightness.dark
+        : galleryThemeMode == ThemeMode.dark;
     final replyTheme =
         isDark ? _buildReplyDarkTheme(context) : _buildReplyLightTheme(context);
     return MultiProvider(
@@ -67,7 +65,7 @@ class _ReplyAppStete extends State<ReplyApp> with RestorationMixin {
         debugShowCheckedModeBanner: false,
         theme: replyTheme,
         //localizationsDelegates: GalleryLocalizations
-        //locale: GalleryOptions.of(context).locale,
+        locale: GalleryOptions.of(context).locale,
         initialRoute: ReplyApp.homeRoute,
         onGenerateRoute: (settings) {
           switch (settings.name) {
